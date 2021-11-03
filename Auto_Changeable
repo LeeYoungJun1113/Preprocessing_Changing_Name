@@ -1,0 +1,33 @@
+clc;
+clear all;
+close all;
+
+cnt=0;
+for F1 = 10
+    file_path = ['./1-100(',num2str(F1),')'];
+    for num = 1:100
+        cnt=cnt+1;
+        file_path2 = [file_path, '/', num2str(num),'/'];
+        names = dir(file_path2);
+        names([names.isdir]) = [];
+        fileNames = {names.name};
+        
+        newName = sprintf('%0d.DCM', num);
+        f = fullfile(file_path2, newName);
+        g = fullfile(file_path2, fileNames{1});
+        movefile(g,f);  
+        
+        A2 = 's';
+        newName_2 = sprintf('%s.DCM', A2);
+        f_2 = fullfile(file_path2, newName_2);
+        g_2 = fullfile(file_path2, fileNames{2});
+        movefile(g_2,f_2);  
+        
+        A3 = 'r';
+        newName_3 = sprintf('%s.DCM', A3);
+        f_3 = fullfile(file_path2, newName_3);
+        g_3 = fullfile(file_path2, fileNames{3}); 
+        movefile(g_3,f_3);
+
+    end
+end
